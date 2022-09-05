@@ -3,6 +3,7 @@ terraform apply
 terraform plan --help
 terraform plan
 terraform plan -destroy
+terraform destroy
 terraform plan -destroy -out=example.pln
 terraform show example.pln
 terraform state list
