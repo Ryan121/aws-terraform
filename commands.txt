@@ -1,0 +1,12 @@
+terraform init
+terraform apply
+terraform plan --help
+terraform plan
+terraform plan -destroy
+terraform plan -destroy -out=example.pln
+terraform show example.pln
+terraform state list
+terraform show -json
+terraform graph http://webgraphviz.com/
+terraform plan -destroy -out=example.plan
+terraform apply -auto-approve
