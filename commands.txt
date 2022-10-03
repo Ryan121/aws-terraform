@@ -1,7 +1,19 @@
+Initialise terrform directory
 terraform init
-terraform apply
+
+See the planned infra changes in AWS/Azure/GCP
 terraform plan --help
 terraform plan
+
+Implements the infra changes in AWS/Azure/GCP
+terraform apply
+
+Refresh the state file to match current changes
+terraform refresh
+
+Gets the outputs from the terraform scripts
+terraform output
+
 terraform plan -destroy
 terraform destroy
 terraform plan -destroy -out=example.pln
@@ -11,3 +23,10 @@ terraform show -json
 terraform graph http://webgraphviz.com/
 terraform plan -destroy -out=example.plan
 terraform apply -auto-approve
+terraform workspace list
+
+Format terraform files
+terraform fmt
+
+Validate files
+terraform validate
