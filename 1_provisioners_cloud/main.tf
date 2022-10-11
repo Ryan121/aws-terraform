@@ -18,14 +18,14 @@ terraform {
 
   provider "aws" {
 
-  region     = "us-west-2"
+  region     = "us-east-1"
 
 }
 
 data "aws_vpc" "main" {
-    id = "vpc-0892e9b812360192f"
+    id = "vpc-0427daa8a87a9817c"
 }
-
+# Oregon vpc-0892e9b812360192f
 resource "aws_security_group" "rs_server_SG" {
   name        = "rs_server_SG"
   description = "Security Group for RS"
@@ -80,7 +80,7 @@ data "template_file" "user_data" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-017fecd1353bcc96e"
+  ami           = "ami-026b57f3c383c2eec"
   instance_type = "t2.micro"
   key_name      = "${aws_key_pair.deployer.key_name}"
   vpc_security_group_ids = [aws_security_group.rs_server_SG.id]
@@ -92,6 +92,6 @@ resource "aws_instance" "app_server" {
 }
 
 output "public_ip" {
-  value = aws_instance.app_server
+  value = aws_instance.app_server.public_ip
 }
 

@@ -30,3 +30,6 @@ terraform fmt
 
 Validate files
 terraform validate
+
+# Matches state and whats provisioned in the cloud
+terraform apply -refresh-only
