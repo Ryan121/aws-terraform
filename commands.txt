@@ -1,5 +1,6 @@
 Initialise terrform directory
 terraform init
+terraform init -migrate-state
 
 See the planned infra changes in AWS/Azure/GCP
 terraform plan --help
@@ -33,3 +34,17 @@ terraform validate
 
 # Matches state and whats provisioned in the cloud
 terraform apply -refresh-only
+
+# Create a ssh key and give it the correct permissions
+ssh-keygen -t rsa
+
+#CHMOD 400 equivelent in windows
+
+icacls.exe terraform /reset
+icacls.exe terraform /grant:r "$($env:username):(r)"
+icacls.exe terraform /inheritance:r
+
+# SSH into server from cli
+ssh ec2-user@${terraform output -raw public_ip} -i ./terraform
+
+terraform apply -replace="aws_instance.app_server"

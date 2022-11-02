@@ -1,12 +1,4 @@
 terraform {
-  # backend "remote" {
-  #   hostname = "app.terraform.io"
-  #   organization = "RS-terraform"
-
-  # workspaces {
-  #     name = "provisioners"
-  #   }
-  # }
 
     required_providers {
     aws = {
@@ -14,6 +6,7 @@ terraform {
       version = "4.33.0"
     }
   }
+
 }
 
   provider "aws" {
@@ -105,6 +98,15 @@ resource "aws_instance" "app_server" {
   tags = {
     Name = "MyTerraformEC2Instance"
   }
+}
+
+resource "null_resource" "status" {
+    provisioner "local-exec" {
+        command = "aws ec2 wait instance-status-ok --instance-ids ${aws_instance.app_server.id}"
+    }
+    depends_on = [
+        aws_instance.app_server
+    ]
 }
 
 output "public_ip" {
