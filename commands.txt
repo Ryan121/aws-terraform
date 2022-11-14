@@ -48,3 +48,20 @@ icacls.exe terraform /inheritance:r
 ssh ec2-user@${terraform output -raw public_ip} -i ./terraform
 
 terraform apply -replace="aws_instance.app_server"
+
+
+# Terraform Commands
+
+terraform state list - List resources in the state
+
+terraform state mv - Move an item in the state
+
+terraform state pull
+
+terraform state push
+
+terraform state replace provider
+
+terraform state rm - Remove
+
+terraform state show - Show a specific resource
