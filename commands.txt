@@ -48,7 +48,7 @@ icacls.exe terraform /inheritance:r
 ssh ec2-user@${terraform output -raw public_ip} -i ./terraform
 
 terraform apply -replace="aws_instance.app_server"
-
+terraform apply --replace=aws_instance.app_server
 
 # Terraform Commands
 
@@ -65,3 +65,10 @@ terraform state replace provider
 terraform state rm - Remove
 
 terraform state show - Show a specific resource
+
+# New workspaces
+
+terraform workspace new dev/staging/production
+
+
+packer build apache.pkr.hcl

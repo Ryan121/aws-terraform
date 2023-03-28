@@ -23,7 +23,7 @@ locals {
   project_name = "Ryan"
 }
 
-resource "aws_instance" "our_server" {
+resource "aws_instance" "app_server" {
 
   ami           = local.ami
   instance_type = var.instance_type
@@ -39,7 +39,7 @@ resource "aws_instance" "our_server" {
 }
 
 output "instance_ip_addr" {
-  value = aws_instance.our_server.public_ip
+  value = aws_instance.app_server.public_ip
   # value = values(aws_instance.app_server)[*].public_ip
 }
 
@@ -47,3 +47,9 @@ variable "instance_type" {
   # type = string
   default = "t2.micro"
 }
+
+
+# Debug Logs
+# TF_LOGS=TRACE terraform apply
+# terraform apply TF_LOG=TRACE TF_LOG_PATH=./terraform.log
+# TF_LOG=TRACE TF_LOG_PATH=./terraform.log terraform apply
